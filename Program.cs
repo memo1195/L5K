@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace L5K
 {
-    class Slot : LineComponent, IBuildable
+    public class Program:L5KComponent,IBuildable
     {
-        public Slot(List<string> content)
-            : base(content,"Slot := ")
+        public Program(string name, List<string> content)
+            :base(name,content,"PROGRAM")
         {
 
         }

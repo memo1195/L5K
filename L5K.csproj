@@ -54,6 +54,7 @@
     <Compile Include="NodeAddress.cs" />
     <Compile Include="Parent.cs" />
     <Compile Include="PortLabel.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Slot.cs" />
     <Compile Include="Tag.cs" />

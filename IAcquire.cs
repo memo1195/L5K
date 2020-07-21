@@ -8,7 +8,8 @@ namespace L5K
 {
     interface IAcquire
     {
-        void Acquire();
+        List<string> Acquire();
+        
 
 
     }

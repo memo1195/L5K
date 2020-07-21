@@ -2,15 +2,16 @@
 
 namespace L5K
 {
-    class PortLabel : LineComponent
+    class PortLabel : LineComponent, IBuildable
     {
-        public bool IsParentBackplane
+        public bool InChassis
         {
             get
             {
                 return Attribute == "RxBACKPLANE";
             }
         }
+
         public PortLabel(List<string> content)
             : base(content,"PortLabel := ")
         {

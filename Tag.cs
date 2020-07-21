@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace L5K
 {
-    class Tag : L5KComponent 
+    public class Tag : L5KComponent, IBuildable
     {
         private string _originalAliasOrDT;
 
@@ -15,12 +15,14 @@ namespace L5K
         public string AliasOrDT { get; private set; }
         public bool IsAlias { get; private set; }
         
+        //Falta agregar un metodo o propiedad para determinar el nombre del Alias
         public Tag(string name, List<string> content)
             :base(name,content, "		")
         {
             _separator = new string[] { " : ", " OF " };
             _GetAliasOrDT();           
         }
+
         private void _GetAliasOrDT()
         {
             IsAlias = _content[0].Contains(_separator[1]);
@@ -28,6 +30,12 @@ namespace L5K
                 _originalAliasOrDT = _GetOriginalName(_separator[1]);
             else
                 _originalAliasOrDT = _GetOriginalName(_separator[0]);
+        }
+
+        public override void Build()
+        {
+            base.Build();
+            _content[0] = _content[0].Replace(_originalAliasOrDT,AliasOrDT);
         }
 
     }

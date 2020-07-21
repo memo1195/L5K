@@ -3,7 +3,7 @@
 namespace L5K
 {
 
-    class Parent : LineComponent
+    class Parent : LineComponent, IBuildable
     {
 
         public Parent(List<string> content)

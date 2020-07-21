@@ -23,7 +23,7 @@ namespace L5K
             _content = content;
             _originalName = _GetOriginalName(initializer);
         }
-        protected string _GetNameBetweenElements(string line, int initIndex, char element)
+        private string _GetNameBetweenElements(string line, int initIndex, char element)
         {
             line = line.Substring(initIndex);
             int originalNameLength = line.IndexOf(element);
