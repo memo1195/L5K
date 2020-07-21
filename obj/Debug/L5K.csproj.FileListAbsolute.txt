@@ -1,0 +1,4 @@
+C:\Users\Guillermo Duarte\source\repos\L5K\L5K\bin\Debug\L5K.dll
+C:\Users\Guillermo Duarte\source\repos\L5K\L5K\bin\Debug\L5K.pdb
+C:\Users\Guillermo Duarte\source\repos\L5K\L5K\obj\Debug\L5K.dll
+C:\Users\Guillermo Duarte\source\repos\L5K\L5K\obj\Debug\L5K.pdb
