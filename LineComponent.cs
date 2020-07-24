@@ -34,7 +34,7 @@ namespace L5K
         public LineComponent(List<string> content,string init)
         {
             _Init = init;
-            _SetName(content);
+            _GetOriginalName(content);
             _DefineType();
         }
 
@@ -48,7 +48,7 @@ namespace L5K
         {
             Type = _Init.Substring(0, _Init.LastIndexOf(' '));
         }
-        private void _SetName(List<string> content)
+        private void _GetOriginalName(List<string> content)
         {
             Index = content.FindIndex(x => x.Contains(_Init));
             if (Index != -1) 
