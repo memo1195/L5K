@@ -5,6 +5,13 @@ namespace L5K
     public abstract class L5KComponent : IBuildable
     {
         public string Name { get; set; }
+        public int Length
+        {
+            get
+            {
+                return _content.Count;
+            }
+        }
         protected List<string> _content;
         protected string _originalName;
         protected string _initializer;

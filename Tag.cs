@@ -15,7 +15,7 @@ namespace L5K
         public string AliasOrDT { get; private set; }
         public bool IsAlias { get; private set; }
         
-        //Falta agregar un metodo o propiedad para determinar el nombre del Alias
+
         public Tag(string name, List<string> content)
             :base(name,content, "		")
         {
