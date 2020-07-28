@@ -8,9 +8,8 @@ namespace L5K
 {
     interface IAcquire
     {
+        int Length { get; }
         List<string> Acquire();
         
-
-
     }
 }

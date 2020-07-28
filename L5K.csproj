@@ -44,9 +44,11 @@
     <Compile Include="AddOnInstruction.cs" />
     <Compile Include="CollectionsExtensions.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="ControllerSection.cs" />
     <Compile Include="DataType.cs" />
     <Compile Include="IBuildable.cs" />
     <Compile Include="IAcquire.cs" />
+    <Compile Include="IntroSection.cs" />
     <Compile Include="L5KComponent.cs" />
     <Compile Include="L5Ksection.cs" />
     <Compile Include="L5KReadStream.cs" />

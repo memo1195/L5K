@@ -12,18 +12,43 @@ namespace L5K
         //this class is intended to be abstract since there will be a class for each type of section
         //(ex: ProgramsSection class, TagsSection class, ModulesSection class, IntroSection class, etc.)
         protected readonly List<string> _content;
-        protected Dictionary<string, int[]> _names;
         protected string _initializer;
 
-        public L5Ksection(List<string> content,int startSec,int endSec)
+        protected Dictionary<string, int[]> _names;
+        
+        public int Length
+        {
+            get
+            {
+                return _content.Count;
+            }
+        }
+
+        public L5Ksection(L5KReadStream readings,int startSec,int endSec)
         {            
-            int contentLength = endSec - startSec;
-            _content = content.GetRange(startSec,contentLength);
-            //_content.FindAllIndex(x => x.StartsWith(_initializer));//probably will have to user this in a
+            
+            _content = new List<string>();
+            for (int i = startSec; i < endSec; i++)
+                _content.Add(readings[i]);
+            //_content.FindAllIndex(x => x.StartsWith(_initializer));//probably will have to use this in a
             //child class
         }
 
+        public L5Ksection(List<string> content, int startSec, int endSec)
+        {
+            int contentLength = endSec - startSec;
+            _content = content.GetRange(startSec, contentLength);
+        }
+
         public abstract List<string> Acquire();
+
+        public string this[int key]
+        {
+            get
+            {
+                return _content[key];
+            }
+        }
 
     }
 }

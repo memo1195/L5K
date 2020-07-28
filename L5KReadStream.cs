@@ -7,15 +7,16 @@ namespace L5K
     {
         //This class reads a L5K file and gets its content into a List all of this content is accessible from an
         //indexer and defines the line in which each of the sections starts and ends
-        private readonly string _controllerSecStart;
-        private readonly string _dataTypeSecStart;
-        private readonly string _moduleSecStart;
-        private readonly string _addonSecStart;
-        private readonly string _tagSecStart;
-        private readonly string _programSecStart;
-        private readonly string _taskSecStart;
-        private readonly string _outroStart;
-        private readonly List<string> _content;
+        public string ControllerInit { get; }
+        public string DataTypeInit { get; }
+        public string ModuleInit { get; }
+        public string AddonInit { get; }
+        public string TagInit { get; }
+        public string ProgramInit { get; }
+        public string TaskInit { get; }
+        public string OutroInit { get; }
+
+        private List<string> _content;
 
         public L5KReadStream()
         {
@@ -46,7 +47,7 @@ namespace L5K
         {
             get
             {
-                return _content.FindIndex(x => x.StartsWith(_controllerSecStart));
+                return _content.FindIndex(x => x.StartsWith(ControllerInit));
             }
         }
         public int ControllerSecEnd
@@ -60,7 +61,7 @@ namespace L5K
         {
             get
             {
-                return _content.FindIndex(x => x.StartsWith(_dataTypeSecStart));
+                return _content.FindIndex(x => x.StartsWith(DataTypeInit));
             }
         }
         public int DataTypeSecEnd
@@ -74,7 +75,7 @@ namespace L5K
         {
             get
             {
-                return _content.FindIndex(x => x.StartsWith(_moduleSecStart));
+                return _content.FindIndex(x => x.StartsWith(ModuleInit));
             }
         }
         public int ModuleTypeSecEnd
@@ -88,7 +89,7 @@ namespace L5K
         {
             get
             {
-                return _content.FindIndex(x => x.StartsWith(_addonSecStart));
+                return _content.FindIndex(x => x.StartsWith(AddonInit));
             }
         }
         public int AddonSecEnd
@@ -102,7 +103,7 @@ namespace L5K
         {
             get
             {
-                return _content.FindIndex(x => x.StartsWith(_tagSecStart));
+                return _content.FindIndex(x => x.StartsWith(TagInit));
             }
         }
         public int TagSecEnd
@@ -116,7 +117,7 @@ namespace L5K
         {
             get
             {
-                return _content.FindIndex(x => x.StartsWith(_programSecStart));
+                return _content.FindIndex(x => x.StartsWith(ProgramInit));
             }
         }
         public int ProgramSecEnd
@@ -130,7 +131,7 @@ namespace L5K
         {
             get
             {
-                return _content.FindIndex(x => x.StartsWith(_taskSecStart));
+                return _content.FindIndex(x => x.StartsWith(TaskInit));
             }
         }
         public int TaskSecEnd
@@ -144,7 +145,7 @@ namespace L5K
         {
             get
             {
-                return _content.FindIndex(x => x.StartsWith(_outroStart));
+                return _content.FindIndex(x => x.StartsWith(OutroInit));
             }
         }
         public int OutroEnd
@@ -165,14 +166,14 @@ namespace L5K
                     _content.Add(read);
             }
 
-            _controllerSecStart = "CONTROLLER ";
-            _dataTypeSecStart = " DATATYPE";
-            _moduleSecStart = "	MODULE";
-            _addonSecStart = " ADD_ON_INSTRUCTION_DEFINITION";
-            _tagSecStart = " TAG";
-            _programSecStart = " PROGRAM";
-            _taskSecStart = " TASK";
-            _outroStart = "CONFIG CST";
+            ControllerInit = "CONTROLLER ";
+            DataTypeInit = " DATATYPE";
+            ModuleInit = "	MODULE";
+            AddonInit = " ADD_ON_INSTRUCTION_DEFINITION";
+            TagInit = " TAG";
+            ProgramInit = " PROGRAM";
+            TaskInit = " TASK";
+            OutroInit = "CONFIG CST";
         }
 
 
