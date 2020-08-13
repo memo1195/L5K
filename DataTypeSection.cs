@@ -15,9 +15,9 @@ namespace L5K
         {
             var datatypeIndexes = _content.FindAllIndex(x => x.StartsWith(_initializer));
             _datatypes = new Dictionary<string, int[]>();
-            for(int i=0;i<datatypeIndexes.Count;i++)
+            for(var i=0;i<datatypeIndexes.Count;i++)
             {
-                int index = datatypeIndexes[i];
+                var index = datatypeIndexes[i];
                 if(i+1!=datatypeIndexes.Count)
                     _datatypes.Add(_GetNameBetweenElements(_content[index], _initializer.Length + 1, ' ')
                         ,new int[] {index,datatypeIndexes[i+1] });

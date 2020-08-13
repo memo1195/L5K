@@ -35,14 +35,14 @@ namespace L5K
 
         public L5Ksection(List<string> content, int startSec, int endSec)
         {
-            int contentLength = endSec - startSec;
+            var contentLength = endSec - startSec;
             _content = content.GetRange(startSec, contentLength);
         }
 
         protected string _GetNameBetweenElements(string line, int initIndex, char element)
         {
             line = line.Substring(initIndex);
-            int originalNameLength = line.IndexOf(element);
+            var originalNameLength = line.IndexOf(element);
             return line.Substring(0, originalNameLength);
         }
 

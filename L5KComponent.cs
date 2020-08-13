@@ -33,13 +33,13 @@ namespace L5K
         private string _GetNameBetweenElements(string line, int initIndex, char element)
         {
             line = line.Substring(initIndex);
-            int originalNameLength = line.IndexOf(element);
+            var originalNameLength = line.IndexOf(element);
             return line.Substring(0, originalNameLength);
         }
 
         protected virtual string _GetOriginalName(string initializer)
         {
-            int initIndex = _content[0].IndexOf(initializer) + initializer.Length + 1;
+            var initIndex = _content[0].IndexOf(initializer) + initializer.Length + 1;
             return _GetNameBetweenElements(_content[0], initIndex, ' ');
         }
 

@@ -40,7 +40,7 @@ namespace L5K
 
         private string _GetNameBetweenElements(string line, char element)
         {
-            int originalNameLength = line.IndexOf(element);
+            var originalNameLength = line.IndexOf(element);
             return line.Substring(0, originalNameLength);
         }
 
