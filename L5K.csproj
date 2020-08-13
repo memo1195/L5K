@@ -46,6 +46,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="ControllerSection.cs" />
     <Compile Include="DataType.cs" />
+    <Compile Include="DataTypeSection.cs" />
     <Compile Include="IBuildable.cs" />
     <Compile Include="IAcquire.cs" />
     <Compile Include="IntroSection.cs" />

@@ -17,7 +17,7 @@ namespace L5K
         
 
         public Tag(string name, List<string> content)
-            :base(name,content, "		")
+            :base(name,content, "		")//this needs adjustments
         {
             _separator = new string[] { " : ", " OF " };
             _GetAliasOrDT();           

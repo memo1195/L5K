@@ -14,7 +14,7 @@ namespace L5K
         protected readonly List<string> _content;
         protected string _initializer;
 
-        protected Dictionary<string, int[]> _names;
+        //protected Dictionary<string, int[]> _names;
         
         public int Length
         {
@@ -26,9 +26,8 @@ namespace L5K
 
         public L5Ksection(L5KReadStream readings,int startSec,int endSec)
         {            
-            
             _content = new List<string>();
-            for (int i = startSec; i < endSec; i++)
+            for (int i = startSec; i <= endSec; i++)
                 _content.Add(readings[i]);
             //_content.FindAllIndex(x => x.StartsWith(_initializer));//probably will have to use this in a
             //child class
@@ -38,6 +37,13 @@ namespace L5K
         {
             int contentLength = endSec - startSec;
             _content = content.GetRange(startSec, contentLength);
+        }
+
+        protected string _GetNameBetweenElements(string line, int initIndex, char element)
+        {
+            line = line.Substring(initIndex);
+            int originalNameLength = line.IndexOf(element);
+            return line.Substring(0, originalNameLength);
         }
 
         public abstract List<string> Acquire();

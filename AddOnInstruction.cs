@@ -11,7 +11,6 @@ namespace L5K
         public AddOnInstruction(List<string> content)
             :base(content, "ADD_ON_INSTRUCTION_DEFINITION")
         {
-            _initializer = "ADD_ON_INSTRUCTION_DEFINITION";
         }
     }
 }
