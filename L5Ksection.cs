@@ -48,6 +48,7 @@ namespace L5K
 
         public abstract List<string> Acquire();
 
+
         public string this[int key]
         {
             get

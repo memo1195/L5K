@@ -9,11 +9,12 @@ namespace L5K
         protected string _linecontent;
         private int _initIndex;
         private string _originalAttribute;
+
         public bool Exists 
         { 
             get 
             {
-                return Attribute != null;
+                return _originalAttribute != null;
             } 
         }
 
@@ -56,13 +57,15 @@ namespace L5K
                 _linecontent = content[Index];
                 _initIndex = _linecontent.IndexOf(_Init) + _Init.Length + 1;
                 _originalAttribute = _GetNameBetweenElements(_linecontent.Substring(_initIndex), '"');
+                Attribute = _originalAttribute;
             }
             
         }
 
         public void Build()
         {
-            _linecontent = _linecontent.Replace(_originalAttribute, Attribute);
+            if(Attribute!=_originalAttribute)
+                _linecontent = _linecontent.Replace(_originalAttribute, Attribute);
         }
     }
 }

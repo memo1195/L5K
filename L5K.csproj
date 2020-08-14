@@ -55,6 +55,7 @@
     <Compile Include="L5KReadStream.cs" />
     <Compile Include="LineComponent.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="ModuleSection.cs" />
     <Compile Include="NodeAddress.cs" />
     <Compile Include="Parent.cs" />
     <Compile Include="PortLabel.cs" />

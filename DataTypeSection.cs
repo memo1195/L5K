@@ -10,10 +10,11 @@ namespace L5K
     {
         private Dictionary<string,int[]> _datatypes;
         private HashSet<string> _needed;
+
         public DataTypeSection(L5KReadStream readings)
             :base(readings,readings.DataTypeSecStart,readings.DataTypeSecEnd)
         {
-            var datatypeIndexes = _content.FindAllIndex(x => x.StartsWith(_initializer));
+            var datatypeIndexes = _content.FindAllIndex(x => x.StartsWith(" "+_initializer));//probably need to change this
             _datatypes = new Dictionary<string, int[]>();
             for(var i=0;i<datatypeIndexes.Count;i++)
             {
@@ -48,6 +49,7 @@ namespace L5K
                     _needed.Add(tag.AliasOrDT);
             }
         }
+
         //this methods is intended to use for printing the final output of the datatypes listed
         public List<string> GetFinalContent()
         {

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace L5K
 {
-    public abstract class L5KComponent : IBuildable
+    public abstract class L5KComponent : IBuildable, ICloneable
     {
         public string Name { get; set; }
         public int Length
@@ -46,6 +47,11 @@ namespace L5K
         public virtual void Build()
         {
             _content[0] = _content[0].Replace(_originalName, Name);
+        }
+
+        public object Clone()
+        {
+            return new List<string>(_content.Clone());
         }
 
         public string this[int key]
