@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddOnInstruction.cs" />
+    <Compile Include="Routine.cs" />
+    <Compile Include="Rung.cs" />
     <Compile Include="CollectionsExtensions.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="ControllerSection.cs" />

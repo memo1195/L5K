@@ -54,8 +54,12 @@ namespace L5K
             return new List<string>(_content.Clone());
         }
 
+
         public string this[int key]
         {
+            //This Indexer is intended to be used once the Build() Method has run, this to avoid having original
+            //values in the output, this indexer will be used to print all the content to the L5K. Each Build()
+            //method of each class should be personalized to adapt to this indexer.
             get
             {
                 return _content[key];
