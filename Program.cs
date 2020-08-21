@@ -7,11 +7,14 @@ namespace L5K
         private readonly List<Tag> _localTags;
         private readonly List<Routine> _routines;
 
+        public bool IsSafetyProgram { get; }
+
         public Program(string name, List<string> content)
             : base(name, content, "PROGRAM")
         {
             _routines = new List<Routine>();
             _localTags = new List<Tag>();
+            FindRoutines();
         }
 
         private void FindRoutines()
@@ -38,6 +41,16 @@ namespace L5K
         public void AddRoutine(string name, List<string> content)
         {
             _routines.Add(new Routine(name, content));
+        }
+
+        public void AddRoutine(List<string> content)
+        {
+            _routines.Add(new Routine(content));
+        }
+
+        public void AddRoutine(Routine routine)
+        {
+            _routines.Add(routine);
         }
 
 

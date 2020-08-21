@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddOnInstruction.cs" />
+    <Compile Include="Alarm.cs" />
     <Compile Include="Routine.cs" />
     <Compile Include="Rung.cs" />
     <Compile Include="CollectionsExtensions.cs" />
