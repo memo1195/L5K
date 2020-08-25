@@ -14,14 +14,19 @@ namespace L5K
                 return "\"#     <Alarm[";
             } 
         } 
-        public string AlarmComment { get; }
+        public string AlarmComment { get; private set; }
         public int Index { 
             get 
             {
                 var index = AlarmComment.IndexOf(']');
                 var length = AlarmInit.Length - index;
                 return Int32.Parse(AlarmComment.Substring(AlarmInit.Length, --length));
-            } 
+            }
+            set
+            {
+                string change = $"[{Index}]";
+                AlarmComment = AlarmComment.Replace(change, value.ToString());
+            }
         }
 
         public Alarm(string comment)
