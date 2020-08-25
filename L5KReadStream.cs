@@ -15,6 +15,7 @@ namespace L5K
         public string ProgramInit { get; }
         public string TaskInit { get; }
         public string OutroInit { get; }
+        public string ProjectName { get; set; }//maybe trigger an event from here and and subscribe all the sections to it
 
         private List<string> _content;
 

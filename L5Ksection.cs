@@ -11,9 +11,9 @@ namespace L5K
         //This class is intended to get the entire section of a L5K file (ex: Programs Section)
         //this class is intended to be abstract since there will be a class for each type of section
         //(ex: ProgramsSection class, TagsSection class, ModulesSection class, IntroSection class, etc.)
-        protected readonly List<string> _content;
+        protected List<string> _content;
         protected string _initializer;
-
+        protected string _projectName;
         //protected Dictionary<string, int[]> _names;
         
         public int Length
@@ -31,12 +31,15 @@ namespace L5K
                 _content.Add(readings[i]);
             //_content.FindAllIndex(x => x.StartsWith(_initializer));//probably will have to use this in a
             //child class
+            _projectName = readings.ProjectName;
         }
 
         public L5Ksection(List<string> content, int startSec, int endSec)
         {
+            //probably wont be using this, still maybe for local tags section this could be used
             var contentLength = endSec - startSec;
             _content = content.GetRange(startSec, contentLength);
+
         }
 
         protected string _GetNameBetweenElements(string line, int initIndex, char element)

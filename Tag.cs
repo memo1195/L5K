@@ -10,7 +10,7 @@ namespace L5K
     {
         private string _originalAliasOrDT;
 
-        private string[] _separator;
+        //private string[] _separator;
 
         public string AliasOrDT { get; private set; }
         public bool IsAlias { get; private set; }
@@ -19,17 +19,25 @@ namespace L5K
         public Tag(string name, List<string> content)
             :base(name,content, "		")//this needs adjustments
         {
-            _separator = new string[] { " : ", " OF " };
+            //_separator = new string[] { " : ", " OF " };
             _GetAliasOrDT();           
+        }
+
+        public Tag(List<string> content)
+            : base(content, "		")//this needs adjustments
+        {
+            //_separator = new string[] { " : ", " OF " };
+            _GetAliasOrDT();
         }
 
         private void _GetAliasOrDT()
         {
-            IsAlias = _content[0].Contains(_separator[1]);
+            var separator = new string[] { " : ", " OF " };
+            IsAlias = _content[0].Contains(separator[1]);
             if (IsAlias)
-                _originalAliasOrDT = _GetOriginalName(_separator[1]);
+                _originalAliasOrDT = _GetOriginalName(separator[1]);
             else
-                _originalAliasOrDT = _GetOriginalName(_separator[0]);
+                _originalAliasOrDT = _GetOriginalName(separator[0]);
         }
 
         public override void Build()
