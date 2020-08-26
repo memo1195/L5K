@@ -10,19 +10,49 @@ namespace L5K
     {
         //TagSection should be implemented once the program section has been implemented to find all the necessary
         //alarms
-        
+        private HashSet<Tag> _needed;
 
         public TagSection(L5KReadStream readings)
             : base(readings,readings.TagSecStart,readings.TagSecEnd)
         {
-
+            _needed = new HashSet<Tag>();
+            _initializer = readings.TagInit;
         }
 
+        public TagSection(List<string> content)
+            :base(content)
+        {
+            //This constructor will be used with local tags only
+            _needed = new HashSet<Tag>();
+            //This gets all the lines in which a tag is delclared and adds it to a List of Tags
+            var tagIndexes=_content.FindAllIndex(x => x.StartsWith("			") && !x.StartsWith("				"));            
+            for (var i = 0; i < tagIndexes.Count; i++)
+            {
+                var index = tagIndexes[i];
+                if (i + 1 != tagIndexes.Count) 
+                {
+                    var length = tagIndexes[i + 1] - tagIndexes[i];
+                    _needed.Add(new Tag(_content.GetRange(tagIndexes[index], ++length)));
+                }
+                else
+                {
+                    var lastIndex= _content.FindIndex(x => x.Contains("END_" + content[content.Count - 1].Trim()));
+                    var length = tagIndexes[i] - lastIndex;
+                    _needed.Add(new Tag(_content.GetRange(tagIndexes[index],length)));
+                }                 
+            }
+        }
 
+        public void AddTags(List<Program> programs)
+        {
+            //This should have an algorithm to find all the tags in the programs, this to get the global tags
+            //local tags should be gathered with the constructor of Program(content)
+        }
 
         public override List<string> Acquire()
         {
-            throw new NotImplementedException();
+            //Not sure if this is ok, maybe it will also be necessary to get the list of DTs
+            return _needed.Select(x => x.Name).ToList();
         }
     }
 }

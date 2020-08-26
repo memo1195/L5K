@@ -53,6 +53,10 @@ namespace L5K
             _routines.Add(routine);
         }
 
+        private void FindLocalTags()
+        {
+
+        }
 
         public List<string> GetRoutines()
         {

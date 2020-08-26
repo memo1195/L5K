@@ -34,11 +34,11 @@ namespace L5K
             _projectName = readings.ProjectName;
         }
 
-        public L5Ksection(List<string> content, int startSec, int endSec)
+        public L5Ksection(List<string> content)
         {
             //probably wont be using this, still maybe for local tags section this could be used
-            var contentLength = endSec - startSec;
-            _content = content.GetRange(startSec, contentLength);
+            _content=content.Clone().ToList();
+            //_content = content.GetRange(startSec, contentLength);
 
         }
 
