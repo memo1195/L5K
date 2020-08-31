@@ -4,7 +4,8 @@ namespace L5K
 {
     public class Program : L5KComponent, IBuildable
     {
-        private readonly List<Tag> _localTags;
+        //private readonly List<Tag> _localTags;
+        private TagSection _localTags;
         private readonly List<Routine> _routines;
 
         public bool IsSafetyProgram { get; }
@@ -13,7 +14,11 @@ namespace L5K
             : base(name, content, "PROGRAM")
         {
             _routines = new List<Routine>();
-            _localTags = new List<Tag>();
+            var localTagStartIndex = content.FindIndex(x => x.Contains("TAG"));
+            var localTagEndIndex = content.FindIndex(x => x.Contains("END_TAG"));
+            _localTags = new TagSection(content.GetRange(localTagStartIndex,++localTagEndIndex-localTagStartIndex));
+            //Need to test this, and see if this should be implemented like this
+            //_localTags = new List<Tag>();
             FindRoutines();
         }
 
@@ -53,10 +58,17 @@ namespace L5K
             _routines.Add(routine);
         }
 
-        private void FindLocalTags()
+        public List<Tag> FindTags()
+        {
+            //This should look in the routines for all the rungs and get which tags it contains
+            //To implement this, I will probably create a similar method in Routine class.
+            return null;
+        }
+
+        /*private void FindLocalTags() //Maybe delete this 08/30/2020
         {
             //Maybe I have to change the localtags list for a localtags section and use this routine to get the content of the section
-        }
+        }*/
 
         public List<string> GetRoutines()
         {

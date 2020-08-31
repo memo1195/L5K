@@ -11,12 +11,14 @@ namespace L5K
         //TagSection should be implemented once the program section has been implemented to find all the necessary
         //alarms
         private HashSet<Tag> _needed;
+        private bool _localTagSection;
 
         public TagSection(L5KReadStream readings)
             : base(readings,readings.TagSecStart,readings.TagSecEnd)
         {
             _needed = new HashSet<Tag>();
             _initializer = readings.TagInit;
+            _localTagSection = false;
         }
 
         public TagSection(List<string> content)
@@ -25,7 +27,8 @@ namespace L5K
             //This constructor will be used with local tags only
             _needed = new HashSet<Tag>();
             //This gets all the lines in which a tag is delclared and adds it to a List of Tags
-            var tagIndexes=_content.FindAllIndex(x => x.StartsWith("			") && !x.StartsWith("				"));            
+            var tagIndexes=_content.FindAllIndex(x => x.StartsWith("			") && !x.StartsWith("				"));
+            _localTagSection = true;
             for (var i = 0; i < tagIndexes.Count; i++)
             {
                 var index = tagIndexes[i];
@@ -47,6 +50,10 @@ namespace L5K
         {
             //This should have an algorithm to find all the tags in the programs, this to get the global tags
             //local tags should be gathered with the constructor of Program(content)
+            foreach(var program in programs)
+            {
+                
+            }
         }
 
         public override List<string> Acquire()

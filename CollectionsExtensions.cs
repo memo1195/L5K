@@ -11,7 +11,7 @@ namespace L5K
         public static List<int> FindAllIndex<T>(this List<T> container, Predicate<T> match)
         {
             var items = container.FindAll(match);
-            List<int> indexes = new List<int>();
+            var indexes = new List<int>();
             foreach (var item in items)
             {
                 indexes.Add(container.IndexOf(item));
@@ -19,6 +19,15 @@ namespace L5K
 
             return indexes;
         }
+        /*public static List<int[]> FindAllIndex<T>(this List<T> container, Predicate<T> match1, Predicate<T> match2)
+        {
+            var items1 = container.FindAllIndex(match1);
+            var items2 = container.FindAllIndex(match2);
+            var indexes = new List<int>();
+            for
+
+            return indexes;
+        }*/
 
         //Has not been implemented yet
         public static IList<T> Clone<T>(this IList<T> listToClone) where T : ICloneable
