@@ -55,7 +55,7 @@ namespace L5K
 
         private void FindLocalTags()
         {
-
+            //Maybe I have to change the localtags list for a localtags section and use this routine to get the content of the section
         }
 
         public List<string> GetRoutines()
