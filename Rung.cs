@@ -65,7 +65,7 @@ namespace L5K
             _alarmList = new List<Alarm>();
             _tags = new HashSet<string>();
             _specialcasesList = new List<string>() { "GSV", "SSV", "JSR" };
-            _parametersRegex = new Regex(@"(?<action>[A-Z]{3,5})(?<parenthesis>\((?<params>[\w.,\[\]\?\+\-\#]*)\))");
+            _parametersRegex = new Regex(@"(?<action>[A-Za-z_][\w]*)(?<parenthesis>\((?<params>[\w.,\[\]\?\+\-\#]*)\))");
             //This regex will be used to find functions and their parenthesis content
             _action = "action";
             _parameters = "params";
