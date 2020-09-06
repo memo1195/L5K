@@ -33,6 +33,7 @@ namespace L5K
         }
         private void SetRungs()
         {
+            _rungs = new List<Rung>();
             var nIndex = _content.IndexOf(_nInit);
             var rcIndex = _content.IndexOf(_rcInit);
             var startIndex = nIndex < rcIndex || rcIndex == -1 ? nIndex : rcIndex;//This identifies which appears first in the routine if a rung comment or logic

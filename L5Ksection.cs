@@ -25,7 +25,7 @@ namespace L5K
         }
 
         public L5Ksection(L5KReadStream readings,int startSec,int endSec)
-        {            
+        {
             _content = new List<string>();
             for (int i = startSec; i <= endSec; i++)
                 _content.Add(readings[i]);

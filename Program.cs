@@ -58,21 +58,25 @@ namespace L5K
             _routines.Add(routine);
         }
 
-        public List<Tag> GetTags()
+        public IEnumerable<string> GetTags()
         {
-            var input = new HashSet<string>();
+            var output = new HashSet<string>();
             foreach(var rotuine in _routines)
             {
-                input.UnionWith(rotuine.GetTags());
+                output.UnionWith(rotuine.GetTags());
             }
             //This should comapare the tags in tag section and remove them from the HashSet for the List only to get global tags 09/05/2020
-            return null;
+            var compare = new HashSet<string>(_localTags.Acquire());//This gets the names of all the tags in local tags section
+            foreach(var tag in compare)
+            {
+                output.RemoveWhere(x => output.Contains(x));
+            }
+            //This compares the list with the local tag list and erases local tags from the output list, this to avoid having them declared at 
+            //global tags, this output only contains tag names, there should be an algorithm in the TagSection that takes this list
+            //and looks for them in the original content and converts the string data to Tag Data.
+            return output;
         }
 
-        /*private void FindLocalTags() //Maybe delete this 08/30/2020
-        {
-            //Maybe I have to change the localtags list for a localtags section and use this routine to get the content of the section
-        }*/
 
         public List<string> GetRoutines()
         {

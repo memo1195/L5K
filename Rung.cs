@@ -125,11 +125,11 @@ namespace L5K
                     foreach (Match tag in tagMatches)
                     {
                         _tags.Add(tag.Groups[_tagName].Value);
-                    }
-                    //This needs an algorithm to separate parameters making a substring from commas, dots and '[' to get only the main tag name
+                    }                   
                 }
             }
         }
+
         //only for GM Alarms, probably will remove this from library and add it as an extention from other library specialized for GM programs
         private void FindAlarms()
         {
