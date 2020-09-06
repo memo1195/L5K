@@ -58,10 +58,14 @@ namespace L5K
             _routines.Add(routine);
         }
 
-        public List<Tag> FindTags()
+        public List<Tag> GetTags()
         {
-            //This should look in the routines for all the rungs and get which tags it contains
-            //To implement this, I will probably create a similar method in Routine class.
+            var input = new HashSet<string>();
+            foreach(var rotuine in _routines)
+            {
+                input.UnionWith(rotuine.GetTags());
+            }
+            //This should comapare the tags in tag section and remove them from the HashSet for the List only to get global tags 09/05/2020
             return null;
         }
 

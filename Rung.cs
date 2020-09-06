@@ -142,6 +142,10 @@ namespace L5K
             }
         }
 
+        public IEnumerable<string> GetTags()
+        {
+            return _tags;
+        }
 
     }
 }
