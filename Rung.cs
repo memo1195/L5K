@@ -17,6 +17,9 @@ namespace L5K
         private Regex _tagFinderRegex;
         private readonly string _tagName;
 
+        private List<string> _addonInstructions;
+        private bool _addonInstructionsPresent;
+
         public static string RCInit
         {
             get
@@ -67,6 +70,8 @@ namespace L5K
             _specialcasesList = new List<string>() { "GSV", "SSV", "JSR" };
             _parametersRegex = new Regex(@"(?<action>[A-Za-z_][\w]*)(?<parenthesis>\((?<params>[\w.,\[\]\?\+\-\#]*)\))");
             //This regex will be used to find functions and their parenthesis content
+            _addonInstructions = new List<string>();
+            _addonInstructionsPresent = false;
             _action = "action";
             _parameters = "params";
             _tagFinderRegex = new Regex(@"\b(?<tagname>[A-Za-z_][\w]*)((?<limiter>([.]|[\[]\d*]))(?<remain>[A-Za-z][\w]*))*");
@@ -104,6 +109,12 @@ namespace L5K
                 var actionType = match.Groups[_action].Value;
                 var parameter = match.Groups[_parameters].Value;
                 var tagMatches = _tagFinderRegex.Matches(parameter);
+                if (actionType.ToUpper() != actionType)
+                {
+                    _addonInstructionsPresent = true;
+                    _addonInstructions.Add(actionType);
+                }
+               
                 if (_specialcasesList.Contains(actionType))
                 {
                     if(actionType==_specialcasesList[0]|| actionType == _specialcasesList[1])
