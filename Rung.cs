@@ -8,11 +8,14 @@ namespace L5K
         private List<string> _comment;
         private List<string> _content;
         private List<Alarm> _alarmList;
-        private HashSet<Tag> _tags;
+        private HashSet<string> _tags;//changed to string Hashset because this will not be reading the tags from the tag section, this is reading it from the logic and 
+                                      //only delivers the name of the Tag, not the content of it
         private List<string> _specialcasesList;//This is a list of Studio5000 Methods that dont necesarily implement a Tag
-        private Regex _regex;
+        private Regex _parametersRegex;
         private readonly string _action;
         private readonly string _parameters;
+        private Regex _tagFinderRegex;
+        private readonly string _tagName;
 
         public static string RCInit
         {
@@ -60,12 +63,15 @@ namespace L5K
             _content = new List<string>();
             _comment = new List<string>();
             _alarmList = new List<Alarm>();
-            _specialcasesList = new List<string>() { "GSV", "SSV" };
-            _regex = new Regex(@"(?<action>[A-Z]{3})(?<parenthesis>\((?<params>[\w.,\[\]\?\+\-\#]*)\))");
+            _tags = new HashSet<string>();
+            _specialcasesList = new List<string>() { "GSV", "SSV", "JSR" };
+            _parametersRegex = new Regex(@"(?<action>[A-Z]{3,5})(?<parenthesis>\((?<params>[\w.,\[\]\?\+\-\#]*)\))");
+            //This regex will be used to find functions and their parenthesis content
             _action = "action";
             _parameters = "params";
-            //This regex will be used to find functions and their parenthesis content
-
+            _tagFinderRegex = new Regex(@"\b(?<tagname>[A-Za-z_][\w]*)((?<limiter>([.]|[\[]\d*]))(?<remain>[A-Za-z][\w]*))*");
+            _tagName = "tagname";
+            DefineTags();
             HasComment = content.Contains(RCInit);
             var viewingComment = HasComment;
             //If the code finds an RC: then it will add the content to _comment List, else it will add it will identify
@@ -88,24 +94,43 @@ namespace L5K
         private void DefineTags()
         {
             var testableString = "";//This will carry all the  content of N: and be tested in a Regex
-            foreach(var line in _content)//Gets all the content and makes it a single line string;
+            foreach (var line in _content)//Gets all the content and makes it a single line string;
             {
                 testableString += line;
             }
-            var matches=_regex.Matches(testableString);
-            foreach(Match match in matches)
+            var matches = _parametersRegex.Matches(testableString);
+            foreach (Match match in matches)
             {
-                if (_specialcasesList.Contains(match.Groups[_action].Value)){
-                    //This will contain the algorithm to retrieve the Tags in special cases 09/05/2020
+                var actionType = match.Groups[_action].Value;
+                var parameter = match.Groups[_parameters].Value;
+                var tagMatches = _tagFinderRegex.Matches(parameter);
+                if (_specialcasesList.Contains(actionType))
+                {
+                    if(actionType==_specialcasesList[0]|| actionType == _specialcasesList[1])
+                        _tags.Add(tagMatches[tagMatches.Count-1].Groups[_tagName].Value);//This only gets the last value acquired
+                                                                                         //Since SSV and GSV only use tags in the last parameter                   
+                    else if (actionType == _specialcasesList[2])//used an else if in case I want to add more instructions later
+                        //This are the instructions of a JSR, this instructions uses a program name as the first parameter and after that it uses only tags
+                        //so this ignores only the first values
+                    {
+                        for(var i = 1; i < tagMatches.Count; i++) 
+                        {
+                            _tags.Add(tagMatches[i].Groups[_tagName].Value);
+                        }
+                    }
+                        
                 }
                 else
-                {
-                    //var params=match.Groups[_parameters].Value;
+                {                    
+                    foreach (Match tag in tagMatches)
+                    {
+                        _tags.Add(tag.Groups[_tagName].Value);
+                    }
                     //This needs an algorithm to separate parameters making a substring from commas, dots and '[' to get only the main tag name
                 }
             }
         }
-
+        //only for GM Alarms, probably will remove this from library and add it as an extention from other library specialized for GM programs
         private void FindAlarms()
         {
             //This is an algorithm that checks the content of the RC and identifies the number of alamrs it has,

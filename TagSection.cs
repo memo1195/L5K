@@ -50,6 +50,9 @@ namespace L5K
         {
             //This should have an algorithm to find all the tags in the programs, this to get the global tags
             //local tags should be gathered with the constructor of Program(content)
+            //This method should read all the local tags in the program and get the ones that have an Alias
+            //Also this should compare the tag list I have in Rung class that lists all the tags found in logic
+            //This is done to discar missing any tags that are used as global 09/05/2020
             foreach(var program in programs)
             {
                 
