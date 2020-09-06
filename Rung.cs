@@ -91,8 +91,8 @@ namespace L5K
                     _content.Add(content[i]);
                 }
             }
-            if (HasComment)
-                FindAlarms();
+            //if (HasComment)
+            //    FindAlarms();
 
             //Content = content;
         }

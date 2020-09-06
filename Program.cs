@@ -58,7 +58,7 @@ namespace L5K
             _routines.Add(routine);
         }
 
-        public IEnumerable<string> GetTags()
+        public IEnumerable<string> GetTagsInCode()
         {
             var output = new HashSet<string>();
             foreach(var rotuine in _routines)
@@ -74,9 +74,14 @@ namespace L5K
             //This compares the list with the local tag list and erases local tags from the output list, this to avoid having them declared at 
             //global tags, this output only contains tag names, there should be an algorithm in the TagSection that takes this list
             //and looks for them in the original content and converts the string data to Tag Data.
+            //output.UnionWith(_localTags.GetGlobalTags().Keys);//this adds the global tags found in the aliases to the list
             return output;
         }
 
+        public Dictionary<string,string> GetTagsInSection()
+        {
+            return GetTagsInSection();
+        }
 
         public List<string> GetRoutines()
         {

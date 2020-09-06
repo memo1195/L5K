@@ -10,9 +10,8 @@ namespace L5K
     {
         private string _originalAliasOrDT;
 
-        //private string[] _separator;
+        public string AliasOrDT { get; set; }
 
-        public string AliasOrDT { get; private set; }
         public bool IsAlias { get; private set; }
         
 
@@ -40,10 +39,15 @@ namespace L5K
                 _originalAliasOrDT = _GetOriginalName(separator[0]);
         }
 
+        public string[] GetTagRelation()
+        {
+            return new string[] { _originalAliasOrDT, AliasOrDT };
+        }
+
         public override void Build()
         {
             base.Build();
-            _content[0] = _content[0].Replace(_originalAliasOrDT,AliasOrDT);
+            _content[0] = _content[0].Replace(_originalAliasOrDT, AliasOrDT);
         }
 
     }
