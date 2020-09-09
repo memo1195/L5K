@@ -69,7 +69,7 @@ namespace L5K
             var compare = new HashSet<string>(_localTags.Acquire());//This gets the names of all the tags in local tags section
             foreach(var tag in compare)
             {
-                output.RemoveWhere(x => output.Contains(x));
+                output.RemoveWhere(x => tag==x);
             }
             //This compares the list with the local tag list and erases local tags from the output list, this to avoid having them declared at 
             //global tags, this output only contains tag names, there should be an algorithm in the TagSection that takes this list

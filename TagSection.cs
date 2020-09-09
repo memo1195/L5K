@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace L5K
 {
-    class TagSection : L5Ksection, IAcquire
+    public class TagSection : L5Ksection, IAcquire
     {
         //TagSection should be implemented once the program section has been implemented to find all the necessary
         //alarms
@@ -17,6 +18,11 @@ namespace L5K
             _needed = new HashSet<Tag>();
             _initializer = readings.TagInit;
             _localTagSection = false;
+            //debbuging
+            //foreach(var line in _content)
+            //{
+            //    Console.WriteLine(line);
+            //}
         }
 
         public TagSection(List<string> content)
@@ -76,7 +82,7 @@ namespace L5K
             foreach (var program in programs)
             {
                 var tagsFromCode = program.GetTagsInCode();
-                
+
                 foreach (var tag in tagsFromCode)
                 {
                     var tagIndex = _content.IndexOf(tag);
@@ -85,13 +91,34 @@ namespace L5K
                 }
                 var tagsFromTagSection = program.GetTagsInSection();
 
-                foreach(var tag in tagsFromTagSection)
+                foreach (var tag in tagsFromTagSection)
                 {
                     var tagIndex = _content.IndexOf(tag.Key);
                     var length = _content.IndexOf(";", tagIndex) + 1 - tagIndex;
-                    _needed.Add(new Tag(tag.Value,_content.GetRange(tagIndex, length)));
+                    _needed.Add(new Tag(tag.Value, _content.GetRange(tagIndex, length)));
                 }
             }
+        }
+
+        public IEnumerable<IEnumerable<string>> SearchTags(Regex regex)
+        {
+            //used for search the whole content of a specific tag or group of tags
+            var output = new List<List<string>>();
+            var content = string.Join(" ", _content);
+            var matches = regex.Matches(content);
+            var tagNames = new List<string>();
+            foreach (Match match in matches)
+            {
+                tagNames.Add(match.Value);
+            }
+            foreach (var tag in tagNames)
+            {
+                var startIndex = _content.FindIndex(x=>x.Contains(tag));
+                var length = _content.FindIndex(startIndex, x => !x.Contains("COMMENT")) - startIndex;
+                output.Add(_content.GetRange(startIndex, length));
+            }
+            return output;
+
         }
 
         public override List<string> Acquire()

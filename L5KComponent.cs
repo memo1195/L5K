@@ -19,16 +19,17 @@ namespace L5K
 
         public L5KComponent(List<string> content,string initializer)
         {
+            _content = content;
             _initializer = initializer;
             Name = _GetOriginalName(initializer);
             _originalName = Name;
-            _content=content;
+            
         }
         public L5KComponent(string name, List<string> content, string initializer)
         {
-            _initializer = initializer;
-            Name = name;
             _content = content;
+            _initializer = initializer;
+            Name = name;            
             _originalName = _GetOriginalName(initializer);
         }
         private string _GetNameBetweenElements(string line, int initIndex, char element)
@@ -40,7 +41,7 @@ namespace L5K
 
         protected virtual string _GetOriginalName(string initializer)
         {
-            var initIndex = _content[0].IndexOf(initializer) + initializer.Length + 1;
+            var initIndex = _content[0].IndexOf(initializer) + initializer.Length;
             return _GetNameBetweenElements(_content[0], initIndex, ' ');
         }
 

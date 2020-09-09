@@ -19,10 +19,6 @@ namespace L5K
 
         private List<string> _content;
 
-        public L5KReadStream()
-        {
-            _content = new List<string>();
-        }
         public int Length
         {
             get
@@ -41,7 +37,7 @@ namespace L5K
         {
             get
             {
-                return ControllerSecStart;
+                return ControllerSecStart-1;
             }
         }
         public int ControllerSecStart
@@ -55,7 +51,7 @@ namespace L5K
         {
             get
             {
-                return DataTypeSecStart;
+                return DataTypeSecStart-1;
             }
         }
         public int DataTypeSecStart
@@ -69,7 +65,7 @@ namespace L5K
         {
             get
             {
-                return ModuleTypeSecStart;
+                return ModuleTypeSecStart-1;
             }
         }
         public int ModuleTypeSecStart
@@ -83,7 +79,7 @@ namespace L5K
         {
             get
             {
-                return AddonSecStart;
+                return AddonSecStart-1;
             }
         }
         public int AddonSecStart
@@ -97,7 +93,7 @@ namespace L5K
         {
             get
             {
-                return TagSecStart;
+                return TagSecStart-1;
             }
         }
         public int TagSecStart
@@ -111,7 +107,7 @@ namespace L5K
         {
             get
             {
-                return ProgramSecStart;
+                return ProgramSecStart-1;
             }
         }
         public int ProgramSecStart
@@ -125,7 +121,7 @@ namespace L5K
         {
             get
             {
-                return TaskSecStart;
+                return TaskSecStart-1;
             }
         }
         public int TaskSecStart
@@ -139,7 +135,7 @@ namespace L5K
         {
             get
             {
-                return OutroStart;
+                return OutroStart-1;
             }
         }
         public int OutroStart
@@ -160,6 +156,7 @@ namespace L5K
 
         public L5KReadStream(string path)
         {
+            _content = new List<string>();
             using (StreamReader sr = File.OpenText(path))
             {
                 string read;
@@ -168,12 +165,12 @@ namespace L5K
             }
 
             ControllerInit = "CONTROLLER ";
-            DataTypeInit = " DATATYPE";
+            DataTypeInit = "	DATATYPE";
             ModuleInit = "	MODULE";
-            AddonInit = " ADD_ON_INSTRUCTION_DEFINITION";
-            TagInit = " TAG";
-            ProgramInit = " PROGRAM";
-            TaskInit = " TASK";
+            AddonInit = "	ADD_ON_INSTRUCTION_DEFINITION";
+            TagInit = "	TAG";
+            ProgramInit = "	PROGRAM";
+            TaskInit = "	TASK";
             OutroInit = "CONFIG CST";
         }
 
