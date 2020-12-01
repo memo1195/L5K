@@ -182,5 +182,10 @@ namespace L5K
                 return _content[key];
             }
         }
+
+        public List<string> GetRange(int index, int count)
+        {
+            return _content.GetRange(index, count);
+        }
     }
 }

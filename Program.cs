@@ -11,7 +11,7 @@ namespace L5K
         public bool IsSafetyProgram { get; }
 
         public Program(string name, List<string> content)
-            : base(name, content, "PROGRAM")
+            : base(name, content, "PROGRAM ")
         {
             _routines = new List<Routine>();
             var localTagStartIndex = content.FindIndex(x => x.Contains("TAG"));
@@ -24,7 +24,7 @@ namespace L5K
 
         private void FindRoutines()
         {
-            var rotuineInitializer = "  ROUTINE";
+            var rotuineInitializer = "  ROUTINE ";
             var routineIndexes = _content.FindAllIndex(x => x.StartsWith(rotuineInitializer));
             for (var i = 0; i < routineIndexes.Count; i++)
             {

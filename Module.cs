@@ -16,7 +16,7 @@ namespace L5K
         }
 
         public Module(string name, List<string> content)
-            : base(name, content, "MODULE")
+            : base(name, content, "MODULE ")
         {
             _inlineComponents = new List<LineComponent>();
             _children = new List<Module>();
@@ -25,7 +25,7 @@ namespace L5K
         //Created an alternative constructor in case it is more suitable than the first one, this one providing child
         //modules
         public Module(string name, List<string> content,List<Module> children)
-            : base(name, content, "MODULE")
+            : base(name, content, "MODULE ")
         {
             _inlineComponents = new List<LineComponent>();
             _children = children;//test this, probably need to create a copy of this and pass it, not as a reference type
@@ -34,7 +34,7 @@ namespace L5K
 
         //used for getting modules without assiging a new name, this will be used in Module Section
         public Module(List<string> content)
-            :base(content, "MODULE")
+            :base(content, "MODULE ")
         {
             _inlineComponents = new List<LineComponent>();
             _children = new List<Module>();

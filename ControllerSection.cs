@@ -6,18 +6,25 @@ using System.Threading.Tasks;
 
 namespace L5K
 {
-    class ControllerSection : L5Ksection, IAcquire
+    public class ControllerSection : L5Ksection, IAcquire
     {
         private Controller _mainController;
+
+        public string ControllerName 
+        {
+            get
+            {
+                return _mainController.OriginalName;
+            }
+        }
 
         public ControllerSection(L5KReadStream readings)
             :base(readings,readings.ControllerSecStart,readings.ControllerSecEnd)
         {
             _initializer = readings.ControllerInit;
-            _mainController = new Controller(_projectName, _content);
+            _mainController = new Controller(_content);
         }
 
-        
 
         public override List<string> Acquire()
         {

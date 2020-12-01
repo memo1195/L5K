@@ -56,7 +56,6 @@ namespace L5K
             //@"\b(?<type>[F|M|W][B])(?<idnum>\d)\[(?<index>\d{1,3})]\.(?<bit>\d{1,2})" for excel
             //@"\bCOMMENT\[(?<index>\d{1,3})]\.(?<bit>\d{1,2}) := "(?<comment>.*)"," for L5K
             var commentRegex = new Regex(@"\bCOMMENT\[(?<index>\d{1,3})]\.(?<bit>\d{1,2}) := ""(?<comment>[^""]*)"",");
-            var testable = string.Join(" ", _content);
             var output = new List<Match>();
             foreach(var line in _content)
             {

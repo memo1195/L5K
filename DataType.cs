@@ -11,7 +11,7 @@ namespace L5K
     {
 
         public DataType(List<string> content)
-            :base(content, "DATATYPE")
+            :base(content, "DATATYPE ")
         {
         }
 

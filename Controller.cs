@@ -8,12 +8,26 @@ namespace L5K
         private readonly List<string> _safetyTagMapping;
 
         public Controller(string name, List<string> content)
-            : base(name, content, "CONTROLLER")
+            : base(name, content, "CONTROLLER ")
         {
             _safetyTagInit = "                                  SafetyTagMap :=";
             _safetyTagMapping = new List<string>();
         }
 
+        public Controller(List<string> content)
+            : base(content, "CONTROLLER ")
+        {
+            _safetyTagInit = "                                  SafetyTagMap :=";
+            _safetyTagMapping = new List<string>();
+        }
+
+        public string OriginalName 
+        { 
+            get 
+            {
+                return _originalName;
+            } 
+        }
 
         public void AddSafetyTagMap(string safetyTag, string standardTag)
         {

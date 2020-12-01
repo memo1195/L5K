@@ -13,14 +13,14 @@ namespace L5K
         private string _nInit;
 
         public Routine(string name, List<string> content)
-            :base(name,content,"ROUTINE")
+            :base(name,content,"ROUTINE ")
         {
             DefineConstants();
             SetRungs();
         }
 
         public Routine(List<string> content)
-            :base(content, "ROUTINE")
+            :base(content, "ROUTINE ")
         {
             DefineConstants();
             SetRungs();
